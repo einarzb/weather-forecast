@@ -32,7 +32,10 @@
 <script id="city-template" type="text/x-handlebars-template">
      <div>
           <hr>
-          <h2> {{ cityName }} <span style="font-size:18px;"> {{ temp }} </span>  <i class="fa fa-thermometer-empty"></i> <span><a href="#" class="f">f</a> | <a href="#" class="c">c</a></span></h2>
+          <h2> {{ cityName }} <span style="font-size:18px;"> {{ temp }} </span>  <i class="fa fa-thermometer-empty"></i>
+            <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/>
+            <span><a href="#" class="f">f</a> | <a href="#" class="c">c</a></span>
+          </h2>
           <h5> {{ dateString }} </h5>
           <p> <b>{{description}} </b></p>
           <div class="input-group">
@@ -55,7 +58,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="node_modules/handlebars/dist/handlebars.js"></script>
   <script src="API.js"></script>
-  <!--<script src="comment.js"></script>-->
+  <script src="comment.js"></script>
 
 
 </body>

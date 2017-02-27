@@ -1,5 +1,3 @@
-var source = $('#city-template').html();
-var template = Handlebars.compile(source);
 
 
 var getName = function () {
@@ -22,39 +20,37 @@ var fetch = function (url) {
 
     success: function(data) { //data is the object
       console.log(data);
-      var cityWeather = function(){ //inner callback function
-            var cityName = data.name;
-            var description = data.weather[0].description;
-            var iconWeather = data.weather[0].icon;
+      var source = $('#city-template').html();
+      var template = Handlebars.compile(source);
 
-            var dateString = new Date();
-            $(this).text = dateString.getDay();
-            var dateString = new Date(dateString).toUTCString();
-            var dateString = dateString.split(' ').slice(0, 5).join(' ')
+      var cityName = data.name;
+      var description = data.weather[0].description;
 
-            var temp = data.main.temp;
-            var celcius = (temp -32) * (5 / 9);
+      var dateString = new Date();
+      $(this).text = dateString.getDay();
+      var dateString = new Date(dateString).toUTCString();
+      var dateString = dateString.split(' ').slice(0, 5).join(' ');
+      var temp = data.main.temp;
+      var celcius = (temp -32) * (5 / 9);
+      var iconWeather = data.weather[0].icon;
 
-            console.log(cityName);
-            console.log(iconWeather);
-            console.log(temp);
-            console.log(celcius);
-            console.log(dateString);
+      console.log(cityName);
+      console.log(iconWeather);
+      console.log(temp);
+      console.log(celcius);
+      console.log(dateString);
 
+      var cityInfo = {
+        cityName:cityName,
+        description:description,
+        dateString,dateString,
+        temp:temp,
+        iconWeather:iconWeather
+       };//end object
 
-            var cityInfo = {
-              cityName:cityName,
-              description:description,
-              dateString,dateString,
-              temp:temp
-             };//end object
-
-            var newHTML = template(cityInfo);
-            $(".cityDisplay").empty();
-            $(".cityDisplay").append(newHTML); 
-      };//end func
-
-    cityWeather();      
+      var newHTML = template(cityInfo);
+      $(".cityDisplay").empty();
+      $(".cityDisplay").append(newHTML); 
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus);

@@ -1,7 +1,8 @@
-var source = $('#comment-template').html();
-var template = Handlebars.compile(source);
+
 
 var commentMaker = function () {
+  var source = $('#comment-template').html();
+var template = Handlebars.compile(source);
 
   if($(".typeComment").val().length > 0){
 
