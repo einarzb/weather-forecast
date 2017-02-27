@@ -43,6 +43,9 @@ var fetch = function (url) {
       var celsius = Math.round(kelvin - 273.15);
       var fahrenheit = Math.round(((kelvin - 273.15) * 9/5) + 32);
       var iconWeather = data.weather[0].icon;
+      var humidity = data.main.humidity;
+      var wind = data.wind.speed;
+
       var cityCheck = true; //boolean for iteration
 
       // console.log(cityName);
@@ -60,6 +63,8 @@ var fetch = function (url) {
         celsius:celsius,
         fahrenheit:fahrenheit,
         iconWeather:iconWeather,
+        humidity:humidity,
+        wind:wind,
         cityCheck:cityCheck, //boolean to iterate the handle bar
         comments:[] //an array of comments
        };//end object

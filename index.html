@@ -35,13 +35,16 @@
         {{#if cityCheck}}
           <hr>
 
-          <h2> {{ cityName }} <span style="font-size:18px;">  {{ fahrenheit }}<sup>o</sup> </span>  <i class="fa fa-thermometer-empty"></i>
-            <span><sup><a href="#" class="f">f</a> | <a href="#" class="celsius active">c</a></sup></span>
-            <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/>
-          </h2>
+          <h3> {{ cityName }}</h3> 
+          <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/><span style="font-size:32px;margin-left:-5px;"><sup>o</sup>{{ fahrenheit }}</span>
+          <i class="fa fa-thermometer-empty" style="font-size:30px;" aria-hidden="true"></i>
+          <sup><a href="#" class="fahrenheit"><sup>o</sup>f</a> | <a href="#" class="celsius active"><sup>o</sup>c</a>
+          </sup>
+
+         
 
           <h5> {{ dateString }} </h5>
-          <p> <b>{{description}} </b></p>
+          <p> <b>{{description}} </b>, humidity: {{ humidity }}%, wind: {{wind}}</p>
           
           <div class="input-group">
             <input type="text" class="form-control typeComment" placeholder="Comment about the weather in {{cityName}}">

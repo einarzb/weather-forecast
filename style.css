@@ -1,3 +1,12 @@
+sup {
+    font-size: 12px;
+    vertical-align: super;
+    text-decoration: none;
+}
+a{ text-decoration: none;
+     color: #000;
+ }
+
 
 h5{color:grey;font-weight: normal}
 textarea{width:300px;}
