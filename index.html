@@ -24,8 +24,8 @@
   </div> <!-- end row -->
   <div class="row">
     <div class="col-md-7 col-md-offset-3">
-              <div class="commentsDisplay"></div>
               <div class="cityDisplay"></div>
+              <div class="commentsDisplay"></div>
     </div>          
   </div>
 
@@ -40,24 +40,28 @@
           </h2>
           <h5> {{ dateString }} </h5>
           <p> <b>{{description}} </b></p>
-
-          <p> {{ getComment }}</p>
-
           <div class="input-group">
             <input type="text" class="form-control typeComment" placeholder="Comment about the weather in {{cityName}}">
             <span class="input-group-btn">
-            <button class="btn btn-success" onclick="postComment()" type="button">Comment</button>
+            <button class="btn btn-success" id="postComment" type="button">Comment</button>
+            </span>
           </div>  
        {{/if}}
-      {{/each}}    
-    </div>  
-</script>
+      {{/each}} 
+      </div>
+ </script>
 
 <script id="comment-template" type="text/x-handlebars-template">
-   <p> {{ getComment }}</p>
+    <div>
+     {{#each posts}} 
+          {{#if postCheck}}
+            <p> my comments {{ getComment }}</p>
+          {{/if}}
+       {{/each}}     
+    </div>
 </script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
   <script src="node_modules/handlebars/dist/handlebars.js"></script>
   <script src="API.js"></script>
 

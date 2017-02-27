@@ -12,6 +12,12 @@ var getName = function () {
     } else {alert("please fill in city name");}
 };
 
+var addCity = function (cityInfo) {
+      storageCity.cities.push(cityInfo); //object.property.push(object)
+      //console.log(storageCity);
+};
+
+
 var fetch = function (url) {
   $.ajax({
     method: "GET",
@@ -19,7 +25,7 @@ var fetch = function (url) {
     dataType: "json",
 
     success: function(data) { //data is the object
-      console.log(data);
+      //console.log(data);
       var source = $('#city-template').html();
       var template = Handlebars.compile(source);
 
@@ -35,11 +41,11 @@ var fetch = function (url) {
       var iconWeather = data.weather[0].icon;
       var cityCheck = true; //boolean for iteration
 
-      console.log(cityName);
-      console.log(iconWeather);
-      console.log(temp);
-      console.log(celcius);
-      console.log(dateString);
+      // console.log(cityName);
+      // console.log(iconWeather);
+      // console.log(temp);
+      // console.log(celcius);
+      // console.log(dateString);
 
       var cityInfo = {
         cityName:cityName,
@@ -47,7 +53,8 @@ var fetch = function (url) {
         dateString,dateString,
         temp:temp,
         iconWeather:iconWeather,
-        cityCheck:cityCheck //boolean to iterate the handle bar
+        cityCheck:cityCheck, //boolean to iterate the handle bar
+        comments:[] //an array of comments
        };//end object
 
        addCity(cityInfo);
@@ -63,34 +70,47 @@ var fetch = function (url) {
   }); 
 };//end fetch function
 
-var addCity = function (cityInfo) {
-      storageCity.cities.push(cityInfo); //object.property.push(object)
-      console.log(storageCity);
+var addComment = function (comment) {
+      console.log($(this).parent());
+      console.log($(this));
+      console.log($(this).parent().siblings(".typeComment"));
+      // $(this).comments.push(comment)
+      //object.property.push(object)
+      //storageComment.posts.push(comment); 
+      // console.log(cityInfo.comments);
 };
 
-var postComment = function () {
+//this function invoked once comment button is clicked!
+
+$("body").on("click", "#postComment", function () {
   var commentSource = $('#comment-template').html();
   var commentTemplate = Handlebars.compile(commentSource);
-
-  if($(".typeComment").val().length > 0){
-    var getComment = $(".typeComment").val();  
-    $(".typeComment").val("");  
-  } else {
-    alert("please type in comment");
-  }
   
+  var getComment = $(this).parent().siblings(".typeComment").val();
+  $(this).parent().siblings(".typeComment").val(""); //clean input
   console.log(getComment);
   
+  var postCheck = true; //boolean for iteration
+  
+  //creating object
   var comment = {
-      getComment:getComment
+      getComment:getComment,
+      postCheck:postCheck //boolean to iterate the handle bar
      };//end object
 
   console.log(comment);
 
-  var newHTML = commentTemplate(comment);
-    $(".commentsDisplay").empty();
-    $(".commentsDisplay").append(newHTML); 
-};//end func
+  //invoking
+ addComment(comment);
+
+  // var newHTML = commentTemplate(storageComment);
+  //   $(".commentsDisplay").empty();
+  //   $(".commentsDisplay").append(newHTML); 
+
+});//end func
+
+
+
 
 
 
