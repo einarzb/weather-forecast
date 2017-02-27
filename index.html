@@ -38,6 +38,9 @@
           </h2>
           <h5> {{ dateString }} </h5>
           <p> <b>{{description}} </b></p>
+
+          <p> {{ getComment }}</p>
+
           <div class="input-group">
             <input type="text" class="form-control typeComment" placeholder="Comment about the weather in {{cityName}}">
             <span class="input-group-btn">
@@ -47,19 +50,12 @@
 </script>
 
 <script id="comment-template" type="text/x-handlebars-template">
-       <div>
-          <hr>
-          <textarea> {{ getComment }}</textarea>
-          <button onclick="commentMaker()" type="button">x</button>
-      </div>  
+   <p> {{ getComment }}</p>
 </script>
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="node_modules/handlebars/dist/handlebars.js"></script>
   <script src="API.js"></script>
-  <script src="comment.js"></script>
-
 
 </body>
 </html>

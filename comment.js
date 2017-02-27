@@ -1,11 +1,9 @@
 
 
-var commentMaker = function () {
-  var source = $('#comment-template').html();
-var template = Handlebars.compile(source);
+var postComment = function () {
 
   if($(".typeComment").val().length > 0){
-
+    alert("comment");
     var getComment = $(".typeComment").val();  
     $(".typeComment").val("");  
     generator(getComment);
@@ -23,5 +21,5 @@ var template = Handlebars.compile(source);
             $(".commentDisplay").append(newHTML); 
       };//end func
 
-    commentMaker();  
+    postComment();  
 }; 

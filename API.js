@@ -1,4 +1,4 @@
-
+var storageCity = [];
 
 var getName = function () {
   var url;
@@ -48,15 +48,50 @@ var fetch = function (url) {
         iconWeather:iconWeather
        };//end object
 
-      var newHTML = template(cityInfo);
+      //addCity(cityInfo); 
+      storageCity.push(cityInfo);
+      console.log(storageCity);   
+ 
+      var newHTML = template(storageCity);
       $(".cityDisplay").empty();
-      $(".cityDisplay").append(newHTML); 
+      $(".cityDisplay").append(newHTML);
+
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus);
     }
   }); 
-};
+};//end fetch function
+
+
+// var addCity = function (cityInfo) {
+//     storageCity.push(cityInfo);
+//     console.log(storageCity);
+// };
+
+var postComment = function () {
+  var commentSource = $('#comment-template').html();
+  var commentTemplate = Handlebars.compile(commentSource);
+
+  if($(".typeComment").val().length > 0){
+    var getComment = $(".typeComment").val();  
+    $(".typeComment").val("");  
+  } else {
+    alert("please type in comment");
+  }
+  
+  console.log(getComment);
+  
+  var comment = {
+      getComment:getComment
+     };//end object
+
+  console.log(comment);
+
+  var newHTML = commentTemplate(comment);
+    $(".commentsDisplay").empty();
+    $(".commentsDisplay").append(newHTML); 
+};//end func
 
 
 
