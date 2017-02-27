@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Weather</title>
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="col-md-7 col-md-offset-3">
+      <form class="weather-form">
+            <h3>Weather Chat</h3>
+                <div class="input-group">
+                    <input type="text" class="city-input form-control" placeholder="Enter City">
+                    <span class="input-group-btn">
+                      <button id="getTemp" class="btn btn-primary post-city" type="button">Get Temp</button>
+                    </span>
+                </div>
+          </form>
+            <hr>
+      </div> <!-- end col -->
+  </div> <!-- end row -->
+  <div class="row">
+    <div class="col-md-7 col-md-offset-3">
+              <div class="city-result"></div>
+    </div>          
+  </div>
+
+<script id="city-template" type="text/x-handlebars-template">
+     <div>
+          <h3> {{ name }} </h3>
+          <p> <b>{{data}} </b></p>
+          <section class="comment-container">{{comments}} </section>
+          <input type="text" class="city-input form-control" placeholder="Comment about the weather in " + {{ name }}>
+          <span class="input-group-btn">
+          <button id="postComment" class="btn btn-success post-comment" type="button">Comment</button>
+    </div>  
+</script>
+
+
+  <!-- scripts -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="node_modules/handlebars/dist/handlebars.js"> </script>
+  <script src="script.js"></script>
+</body>
+</html>
