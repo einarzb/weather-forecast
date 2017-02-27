@@ -1,4 +1,4 @@
-var storageCity = [];
+var storageCity = {cities:[]};
 
 var getName = function () {
   var url;
@@ -33,6 +33,7 @@ var fetch = function (url) {
       var temp = data.main.temp;
       var celcius = (temp -32) * (5 / 9);
       var iconWeather = data.weather[0].icon;
+      var cityCheck = true; //boolean for iteration
 
       console.log(cityName);
       console.log(iconWeather);
@@ -45,14 +46,13 @@ var fetch = function (url) {
         description:description,
         dateString,dateString,
         temp:temp,
-        iconWeather:iconWeather
+        iconWeather:iconWeather,
+        cityCheck:cityCheck //boolean to iterate the handle bar
        };//end object
 
-      //addCity(cityInfo); 
-      storageCity.push(cityInfo);
-      console.log(storageCity);   
+       addCity(cityInfo);
  
-      var newHTML = template(storageCity);
+      var newHTML = template(storageCity); //templates only takes objects! 
       $(".cityDisplay").empty();
       $(".cityDisplay").append(newHTML);
 
@@ -63,11 +63,10 @@ var fetch = function (url) {
   }); 
 };//end fetch function
 
-
-// var addCity = function (cityInfo) {
-//     storageCity.push(cityInfo);
-//     console.log(storageCity);
-// };
+var addCity = function (cityInfo) {
+      storageCity.cities.push(cityInfo); //object.property.push(object)
+      console.log(storageCity);
+};
 
 var postComment = function () {
   var commentSource = $('#comment-template').html();

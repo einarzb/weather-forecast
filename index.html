@@ -30,7 +30,9 @@
   </div>
 
 <script id="city-template" type="text/x-handlebars-template">
-     <div>
+     <div>  
+      {{#each cities}}
+        {{#if cityCheck}}
           <hr>
           <h2> {{ cityName }} <span style="font-size:18px;"> {{ temp }} </span>  <i class="fa fa-thermometer-empty"></i>
             <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/>
@@ -46,6 +48,8 @@
             <span class="input-group-btn">
             <button class="btn btn-success" onclick="postComment()" type="button">Comment</button>
           </div>  
+       {{/if}}
+      {{/each}}    
     </div>  
 </script>
 
