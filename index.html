@@ -2,6 +2,7 @@
 <html>
 <head>
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="node_modules/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Weather</title>
 </head>
@@ -15,35 +16,47 @@
                 <div class="input-group">
                     <input type="text" class="search form-control" placeholder="Enter City">
                     <span class="input-group-btn">
-                    <button type="button" onclick="fetch()" class="btn btn-primary">Get Temp</button>
+                    <button type="button" onclick="getName()" class="btn btn-primary">Get Temp</button>
                     </span>
                 </div>
           </form>
-            <hr>
       </div> <!-- end col -->
   </div> <!-- end row -->
   <div class="row">
     <div class="col-md-7 col-md-offset-3">
-              <div class="city-result"></div>
+              <div class="commentsDisplay"></div>
+              <div class="cityDisplay"></div>
     </div>          
   </div>
 
 <script id="city-template" type="text/x-handlebars-template">
      <div>
-          <h3> {{ name }} </h3>
-          <p> <b>{{data}} </b></p>
-          <section class="comment-container">{{comments}} </section>
-          <input type="text" class="city-input form-control" placeholder="Comment about the weather in " + {{ name }}>
-          <span class="input-group-btn">
-          <button id="postComment" class="btn btn-success post-comment" type="button">Comment</button>
+          <hr>
+          <h2> {{ cityName }} <span style="font-size:18px;"> {{ temp }} </span>  <i class="fa fa-thermometer-empty"></i> <span><a href="#" class="f">f</a> | <a href="#" class="c">c</a></span></h2>
+          <h5> {{ dateString }} </h5>
+          <p> <b>{{description}} </b></p>
+          <div class="input-group">
+            <input type="text" class="form-control typeComment" placeholder="Comment about the weather in {{cityName}}">
+            <span class="input-group-btn">
+            <button class="btn btn-success" onclick="postComment()" type="button">Comment</button>
+          </div>  
     </div>  
 </script>
 
+<script id="comment-template" type="text/x-handlebars-template">
+       <div>
+          <hr>
+          <textarea> {{ getComment }}</textarea>
+          <button onclick="commentMaker()" type="button">x</button>
+      </div>  
+</script>
 
-  <!-- scripts -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="node_modules/handlebars/dist/handlebars.js"> </script>
+  <script src="node_modules/handlebars/dist/handlebars.js"></script>
   <script src="API.js"></script>
+  <!--<script src="comment.js"></script>-->
+
+
 </body>
 </html>

@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "awesome": "0.0.7",
+    "font": "0.0.4",
     "handlebars": "^4.0.6"
   }
 }
