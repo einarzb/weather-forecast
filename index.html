@@ -13,9 +13,9 @@
       <form class="weather-form">
             <h3>Weather Chat</h3>
                 <div class="input-group">
-                    <input type="text" class="city-input form-control" placeholder="Enter City">
+                    <input type="text" class="search form-control" placeholder="Enter City">
                     <span class="input-group-btn">
-                      <button id="getTemp" class="btn btn-primary post-city" type="button">Get Temp</button>
+                    <button type="button" onclick="fetch()" class="btn btn-primary">Get Temp</button>
                     </span>
                 </div>
           </form>
@@ -44,6 +44,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="node_modules/handlebars/dist/handlebars.js"> </script>
-  <script src="script.js"></script>
+  <script src="API.js"></script>
 </body>
 </html>
