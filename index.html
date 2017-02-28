@@ -10,7 +10,7 @@
 <body>
 
   <div class="row">
-    <div class="col-md-7 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
       <form class="weather-form">
             <h3>Weather Chat</h3>
                 <div class="input-group">
@@ -31,31 +31,33 @@
 
 <script id="city-template" type="text/x-handlebars-template">
      <div>  
-      {{#each cities}}
+     
         {{#if cityCheck}}
           <hr>
 
           <h3> {{ cityName }}</h3> 
           <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/><span style="font-size:32px;margin-left:-5px;"><sup>o</sup>{{ fahrenheit }}</span>
           <i class="fa fa-thermometer-empty" style="font-size:30px;" aria-hidden="true"></i>
-          <sup><a href="#" class="fahrenheit"><sup>o</sup>f</a> | <a href="#" class="celsius active"><sup>o</sup>c</a>
+          <sup><a href="#" class="fahrenheit"><sup>o</sup>F</a> | <a href="#" class="celsius active"><sup>o</sup>C</a>
           </sup>
 
-         
-
           <h5> {{ dateString }} </h5>
-          <p> <b>{{description}} </b>, humidity: {{ humidity }}%, wind: {{wind}} mph</p>
-          
+          <p> <b>{{description}} </b><br> humidity: {{ humidity }}%, wind: {{wind}} mph</p>
+       
+         <div>
+           {{#each comments}} 
+              <p>{{getComment}}</p>
+             {{/each}}     
+          </div>
+
           <div class="input-group">
             <input type="text" class="form-control typeComment" placeholder="Comment about the weather in {{cityName}}">
            
             <span class="input-group-btn">
-                <button class="btn btn-success" id="postComment" type="button">Comment</button>
+                <button class="btn btn-success" data-id="{{currentId}}" id="postComment" type="button">Comment</button>
             </span>
-
           </div>  
        {{/if}}
-      {{/each}} 
       </div>
  </script>
 
@@ -63,7 +65,7 @@
     <div>
      {{#each posts}} 
           {{#if postCheck}}
-            <p> my comments {{ getComment }}</p>
+            <p> my comments:</p>
           {{/if}}
        {{/each}}     
     </div>

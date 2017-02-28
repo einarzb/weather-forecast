@@ -1,7 +1,9 @@
 var storageCity = {cities:[]};
+var id = 0;
 
 $("body").on("click", "#getName", function () {
   var url;
+  
   currentCity = $(this).parent().siblings(".search").val();
   console.log(currentCity);
   //addComment(currentCity);
@@ -15,46 +17,25 @@ $("body").on("click", "#getName", function () {
     } else {alert("please fill in city name");}
 });
 
-var addCity = function (cityInfo) {
-      storageCity.cities.push(cityInfo); //object.property.push(object)
-      console.log(storageCity);
-};
-
-
-var fetch = function (url) {
-  $.ajax({
-    method: "GET",
-    url: url,
-    dataType: "json",
-
-    success: function(data) { //data is the object
-      //console.log(data);
-      var source = $('#city-template').html();
-      var template = Handlebars.compile(source);
-
+var createCity = function (data) {
       var cityName = data.name;
       var description = data.weather[0].description;
+      var currentId = id++;
 
       var dateString = new Date();
       $(this).text = dateString.getDay();
       var dateString = new Date(dateString).toUTCString();
       var dateString = dateString.split(' ').slice(0, 5).join(' ');
+
       var kelvin = data.main.temp;
       var celsius = Math.round(kelvin - 273.15);
       var fahrenheit = Math.round(((kelvin - 273.15) * 9/5) + 32);
+
       var iconWeather = data.weather[0].icon;
       var humidity = data.main.humidity;
       var wind = data.wind.speed;
 
       var cityCheck = true; //boolean for iteration
-
-      // console.log(cityName);
-      // console.log(iconWeather);
-      // console.log(temp);
-      // console.log(celcius);
-      // console.log(dateString);
-      console.log(celsius);
-      console.log(fahrenheit);
 
       var cityInfo = {
         cityName:cityName,
@@ -65,15 +46,31 @@ var fetch = function (url) {
         iconWeather:iconWeather,
         humidity:humidity,
         wind:wind,
+        currentId:currentId,
         cityCheck:cityCheck, //boolean to iterate the handle bar
         comments:[] //an array of comments
-       };//end object
+        };//end object
 
+        return cityInfo;
+};
+
+var addCity = function (cityInfo) {
+      storageCity.cities.push(cityInfo); //object.property.push(object)
+      console.log(storageCity);
+};
+
+var fetch = function (url) { //data 
+  $.ajax({
+    method: "GET",
+    url: url,
+    dataType: "json",
+
+    success: function(data) { //data is the object
+      //console.log(data);
+       var cityInfo = createCity(data); //var holds the function createcity that returned cityInfo
        addCity(cityInfo);
-        
-      var newHTML = template(storageCity); //templates only takes objects! 
-      $(".cityDisplay").empty();
-      $(".cityDisplay").append(newHTML);
+       renderCities();
+
 
     },
     error: function(jqXHR, textStatus, errorThrown) {
@@ -82,10 +79,19 @@ var fetch = function (url) {
   }); 
 };//end fetch function
 
-// var addComment = function (comment, currentCity) {
-//       storageCity.cities.currentCity.comments.push(comment); //stuck in here
-//       console.log(cityInfo); 
-// };
+var getCityById = function (currentId) {
+  for (var i = 0; i < storageCity.cities.length; i++) {
+    if(storageCity.cities[i].currentId === currentId){
+      return i; //returns location of current city
+    }
+  };
+}
+
+var addComment = function (comment,currentId) {
+      var i = getCityById(currentId);
+      storageCity.cities[i].comments.push(comment); //stuck in here
+      renderCities();
+};
 
 //this function invoked once comment button is clicked!
 
@@ -108,8 +114,9 @@ $("body").on("click", "#postComment", function () {
 
   console.log(comment);
 
+      var currentId = $(this).data().id;
   //invoking
- addComment(comment);
+ addComment(comment,currentId);
 
   // var newHTML = commentTemplate(storageComment);
   //   $(".commentsDisplay").empty();
@@ -117,7 +124,17 @@ $("body").on("click", "#postComment", function () {
 
 });//end func
 
+//view
+var renderCities = function () {
+  var source = $('#city-template').html();
+  var template = Handlebars.compile(source);
+  $(".cityDisplay").empty();
 
+  for (var i = 0; i < storageCity.cities.length; i++) {
+      var newHTML = template(storageCity.cities[i]); //templates only takes objects! //arr[i]
+      $(".cityDisplay").append(newHTML);
+    }
+};
 
 
 
