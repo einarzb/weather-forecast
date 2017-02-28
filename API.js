@@ -89,7 +89,7 @@ var getCityById = function (currentId) {
 
 var addComment = function (comment,currentId) {
       var i = getCityById(currentId);
-      storageCity.cities[i].comments.push(comment); //stuck in here
+      storageCity.cities[i].comments.push(comment);
       renderCities();
 };
 
@@ -118,10 +118,6 @@ $("body").on("click", "#postComment", function () {
   //invoking
  addComment(comment,currentId);
 
-  // var newHTML = commentTemplate(storageComment);
-  //   $(".commentsDisplay").empty();
-  //   $(".commentsDisplay").append(newHTML); 
-
 });//end func
 
 //view
@@ -132,7 +128,7 @@ var renderCities = function () {
 
   for (var i = 0; i < storageCity.cities.length; i++) {
       var newHTML = template(storageCity.cities[i]); //templates only takes objects! //arr[i]
-      $(".cityDisplay").append(newHTML);
+      $(".cityDisplay").prepend(newHTML); //prepend first in on top
     }
 };
 
