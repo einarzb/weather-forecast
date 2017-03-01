@@ -30,11 +30,12 @@
   </div>
 
 <script id="city-template" type="text/x-handlebars-template">
-     <div>  
+     <div class='cityBox well'>  
      
         {{#if cityCheck}}
-          <hr>
-
+          <span style="display:inline-block;float:right;">
+                <button class="btn btn-danger btn-sm" data-id="{{currentId}}" id="removePost" type="button">remove</button>
+          </span>
           <h3> {{ cityName }}</h3> 
           <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/><span style="font-size:32px;margin-left:-5px;"><sup>o</sup>{{ fahrenheit }}</span>
           <i class="fa fa-thermometer-empty" style="font-size:30px;" aria-hidden="true"></i>
@@ -46,8 +47,8 @@
        
          <div>
            {{#each comments}} 
-              <p>{{getComment}}</p>
-             {{/each}}     
+              <p><em>"{{getComment}}"</em></p>
+           {{/each}}     
           </div>
 
           <div class="input-group">
@@ -61,16 +62,7 @@
       </div>
  </script>
 
-<script id="comment-template" type="text/x-handlebars-template">
-    <div>
-     {{#each posts}} 
-          {{#if postCheck}}
-            <p> my comments:</p>
-          {{/if}}
-       {{/each}}     
-    </div>
-</script>
-
+  <script id="comment-template" type="text/x-handlebars-template"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
   <script src="node_modules/handlebars/dist/handlebars.js"></script>
   <script src="API.js"></script>

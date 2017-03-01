@@ -5,8 +5,7 @@ $("body").on("click", "#getName", function () {
   var url;
   
   currentCity = $(this).parent().siblings(".search").val();
-  console.log(currentCity);
-  //addComment(currentCity);
+  //important for comments object
 
   if($(".search").val().length > 0){
 
@@ -94,7 +93,6 @@ var addComment = function (comment,currentId) {
 };
 
 //this function invoked once comment button is clicked!
-
 $("body").on("click", "#postComment", function () {
   var commentSource = $('#comment-template').html();
   var commentTemplate = Handlebars.compile(commentSource);
@@ -119,6 +117,17 @@ $("body").on("click", "#postComment", function () {
  addComment(comment,currentId);
 
 });//end func
+
+///removing post////
+$("body").on("click", "#removePost", function () {
+  var removedIndex = $(this).index(); //index
+  var currentRemoved = $(this).data().id; //data-id
+  console.log(currentRemoved);
+  console.log(storageCity.cities);  
+  storageCity.cities.splice(removedIndex, 1);
+  renderCities();
+});//end func
+
 
 //view
 var renderCities = function () {
