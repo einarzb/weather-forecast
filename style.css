@@ -1,8 +1,15 @@
+.btn-link {
+    color: red;
+}
+
+.btn-link:hover {
+color:red;
+text-decoration: none;
+}
+
 .cityBox{
 margin-top:20px;
 box-sizing: border-box;
-border: 1px solid tomato;
-
 }
 sup {
     font-size: 12px;

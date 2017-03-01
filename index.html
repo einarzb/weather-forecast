@@ -30,11 +30,11 @@
   </div>
 
 <script id="city-template" type="text/x-handlebars-template">
-     <div class='cityBox well'>  
+     <div class='cityBox well '>  
      
         {{#if cityCheck}}
           <span style="display:inline-block;float:right;">
-                <button class="btn btn-danger btn-sm" data-id="{{currentId}}" id="removePost" type="button">remove</button>
+                <button class="btn btn-link btn-sm" data-id="{{currentId}}" id="removePost" type="button">remove</button>
           </span>
           <h3> {{ cityName }}</h3> 
           <img src='http://openweathermap.org/img/w/{{iconWeather}}.png'/><span style="font-size:32px;margin-left:-5px;"><sup>o</sup>{{ fahrenheit }}</span>
